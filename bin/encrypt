@@ -1,0 +1,22 @@
+<?php
+
+// Usage:
+//
+//   $ php encrypt $mast"jjaf-?jj" # the double quotes are not part of the password
+//   encrypted:C76oN3oZ5SgoGy2bLNk/rQ==
+//
+// Then, add to config.ini:
+//
+//   some_service_password = 'encrypted:C76oN3oZ5SgoGy2bLNk/rQ=='
+
+require_once(__DIR__ . "/../byron.php");
+
+if ($argc != 3) {
+    echo "usage: {$argv[0]} \$master_password \$string\n";
+    die;
+}
+
+$config = new \Byron\Config();
+$config->setPassword($argv[1]);
+
+echo $config->encrypt($argv[2]), "\n";

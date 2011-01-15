@@ -1,0 +1,18 @@
+<?php
+
+// Usage:
+//
+//   $ php decrypt "qqqqqq" "encrypted:rK/EmuAnLDu0PTkuD/BRuA=="
+//   Hello, World!
+
+require_once(__DIR__ . "/../byron.php");
+
+if ($argc != 3) {
+    echo "usage: {$argv[0]} \$master_password \$encrypted_string\n";
+    die;
+}
+
+$config = new \Byron\Config();
+$config->setPassword($argv[1]);
+
+echo $config->decrypt($argv[2]), "\n";
