@@ -1,7 +1,5 @@
 <?php
 
-// $Id$
-
 /**
  * Converts string $s into a form suitable for use in a URL/URI.
  * (i.e. as specified by RFC 1738.)  The character set of $s is
@@ -23,7 +21,8 @@
 // function--?  Do they actually know what they're doing?
 
 function uri_encode($s) {
-	return rawurlencode($s);
+    $tmp = new \Byron\String($s);
+    return $tmp->toUri();
 }
 
 /**
@@ -36,7 +35,6 @@ function uri_encode($s) {
  */
 
 function uri_decode($s) {
-	return rawurldecode($s);
+    $tmp = new \Byron\String($s);
+    return $tmp->fromUri();
 }
-
-?>
