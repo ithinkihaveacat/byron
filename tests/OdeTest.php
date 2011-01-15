@@ -1,6 +1,6 @@
 <?php
 
-class OdeTest extends BaseTest
+class OdeTest extends PHPUnit_Framework_Testcase
 {
     
     public function testXpathMatchRoot()

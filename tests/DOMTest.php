@@ -1,6 +1,7 @@
 <?php
 
-class DOMTest extends BaseTest {
+class DOMTest extends PHPUnit_Framework_Testcase
+{
 
     public function testLoad()
     {
