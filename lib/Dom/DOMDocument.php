@@ -60,7 +60,11 @@ class DOMDocument extends \Byron\Proxy {
             }
             $v = $t->toArray();
             if ($v) {
-                $a[] = array_merge($t->attributeToArray(), $v);
+                if (is_array($v)) {
+                    $a[] = array_merge($t->attributeToArray(), $v);
+                } else {
+                    $a[] = array_merge($t->attributeToArray(), array("*" => $v));
+                }
             } else {
                 $a[] = array_merge($t->attributeToArray());
             }

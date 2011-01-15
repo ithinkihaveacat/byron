@@ -392,6 +392,22 @@ class DOMTest extends PHPUnit_Framework_Testcase
           $this->assertXmlStringEqualsXmlString('<root><img src="foo.jpg"/><p/></root>', $doc->toXml());
           
       }
+      
+      public function testBodyIsText() {
+          
+          $doc = \Byron\DOM::loadXML('<quotes><quote source="p. 45">Appeals shall not be used...</quote></quotes>');
+          
+          $expected = array(
+              array(
+                  "source" => "p. 45",
+                  "*" => "Appeals shall not be used..."
+              )
+          );
+          
+          $this->assertEquals($expected, $doc->toArray("/quotes/quote"));
+
+
+      }
     
     
 }
