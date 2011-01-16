@@ -259,56 +259,56 @@ class DOMElement extends \Byron\Proxy {
     /**
      * Returns the element serialised as XML.
      *
+     * @param boolean $includeRoot if true, include the element itself in the output
      * @return string
      */
 
-    public function toXml() {
-        return $this->getElement()->ownerDocument->saveXML($this->getElement());
+    public function toXml($includeRoot = true)
+    {
+        if ($includeRoot) {
+            return $this->getElement()->ownerDocument->saveXML($this->getElement());
+        } else {
+            $s = array();
+            foreach ($this->childNodes as $c) {
+                $s[] = $this->getElement()->ownerDocument->saveXML($c);
+            }
+            return join("", $s);
+        }
     }
     
     /**
-     * This method has two distinct modes depending on whether $exp is provided.
+     * Converts element to an array, where keys correspond to the
+     * names of elements, and values correspond to the corresponding
+     * (text) values.
      *
-     * If $exp is not provided, the element is converted into an array, where keys
-     * correspond to the names of elements, and values correspond to the
-     * corresponding (text) values.  This mode returns an array.
-     *
-     * If $exp is provided, the method works like DOMDocument's toArray() method: we
-     * perform an XPath query on $exp, and then, for each element returned, we
-     * convert elements into keys, and element values into values.  This mode returns
-     * an array of arrays.
-     *
-     * @param $exp
-     * @return array|string
+     * @return array
      */
     
-    public function toArray($exp = null) {
+    public function toArray() {
         
-        if (!is_null($exp)) {
-
-            $a = array();
-            $xpath = DOMXPath($this->getElement()->ownerDocument);
-            $nl = $xpath->query($exp, $this->getElement());
-            for ($i = 0; $i < $nl->length; $i++) {
-                $t = new self($nl->item($i));
-                $a[] = array_merge($t->attributeToArray(), $t->toArray());
+        // If any of the children are non-empty text nodes, then we're dealing
+        // with something like "The <em>rain</em> in Spain...", which we want
+        // to return as a string.
+        
+        foreach ($this->childNodes as $c) {
+            if ($c->nodeType == XML_TEXT_NODE) {
+                if (trim($c->wholeText) != '') {
+                    return $this->toXml(false);
+                }
             }
-            
-            return $a;
-            
         }
-
-        $children = array();
 
         // Get a list of all the children that are element nodes.  (As opposed to,
         // say, text nodes.)
+        
+        $children = array();        
 
         foreach ($this->childNodes as $c) {
             if ($c->nodeType == XML_ELEMENT_NODE) {
                 $children[] = $c;
             }
         }
-
+        
         if ($children) {
 
             // If the children include element nodes, apply toArray() to the them

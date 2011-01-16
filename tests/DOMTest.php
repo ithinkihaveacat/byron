@@ -406,8 +406,20 @@ class DOMTest extends PHPUnit_Framework_Testcase
           
           $this->assertEquals($expected, $doc->toArray("/quotes/quote"));
 
-
       }
-    
-    
+      
+      public function testBodyIsMarkedUpText() {
+          
+          $doc = \Byron\DOM::loadXML('<quotes><quote source="p. 45">Appeals shall <em>not</em> be used...</quote></quotes>');
+          
+          $expected = array(
+              array(
+                  "source" => "p. 45",
+                  "*" => "Appeals shall <em>not</em> be used..."
+              )
+          );
+          
+          $this->assertEquals($expected, $doc->toArray("/quotes/quote"));
+          
+      }
 }
