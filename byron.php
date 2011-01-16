@@ -5,13 +5,13 @@
  * a class, but no such class is found, and exception is thrown.
  */
 
-spl_autoload_register(function ($class) {
+spl_autoload_register(function ($klass) {
     
-    // Map $class to the $filename it's supposed to be defined in
+    // Map $klass to the $filename it's supposed to be defined in
     
-    if (strpos($class, "Byron\\") === 0) {
+    if (strpos($klass, "Byron\\") === 0) {
         
-        $filename = sprintf("%s/%s/%s.php", __DIR__, "lib", str_replace("\\", "/", substr($class, strlen("Byron\\"))));
+        $filename = sprintf("%s/%s/%s.php", __DIR__, "lib", str_replace("\\", "/", substr($klass, strlen("Byron\\"))));
         
         // Does $filename exist?
     
