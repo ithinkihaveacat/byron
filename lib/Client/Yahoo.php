@@ -4,11 +4,6 @@ namespace Byron\Client;
 
 class Yahoo extends \Byron\Client {
     
-    public function __construct($key)
-    {
-        $this->setKey($key);
-    }
-
     function termExtraction($text)
     {
         

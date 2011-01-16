@@ -24,6 +24,11 @@ abstract class Client extends \Zend_Http_Client {
 
     protected $returnResponseObject = false;
     
+    public function __construct($key)
+    {
+        $this->setKey($key);
+    }
+
     public function setKey($key) {
         return $this->key = $key;
     }
