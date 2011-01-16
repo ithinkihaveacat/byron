@@ -1,6 +1,14 @@
 <?php
 
 /**
+ * This class sets up the autoloader for all classes in the \Byron namespace, and defines
+ * the function "blib()" that is used to load functions.  If your requirements are simple,
+ * it's probably sufficient to just arrange to "require_once()" this file to use Byron.
+ * If you have complicated autoloading requirements, you may wish to replace all of
+ * this code with your own.
+ */
+
+/**
  * Class autoloader for all classes in the \Byron namespace.  If attempting to load such 
  * a class, but no such class is found, and exception is thrown.
  */
@@ -13,8 +21,6 @@ spl_autoload_register(function ($klass) {
         
         $filename = sprintf("%s/%s/%s.php", __DIR__, "lib", str_replace("\\", "/", substr($klass, strlen("Byron\\"))));
         
-        // Does $filename exist?
-    
         if (is_readable($filename)) { // can use stream_resolve_include_path() to search include path
             require_once($filename);
         } 

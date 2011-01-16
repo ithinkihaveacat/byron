@@ -2,6 +2,16 @@
 
 namespace Byron;
 
+/**
+ * \Byron\Client extends \Zend_Http_Client, and behaves like it in most respects.
+ * However, there are two crucial differences: (1) the constructor takes a "key", which
+ * will generally be an API key, or a datastructure representing an API key; and (2)
+ * the return value of an actual request can be configured to be just the body of the 
+ * response, and not the response object itself.  (This is useful if the service
+ * you're talking to isn't very RESTful, and pretty much always returns a 200, embedding
+ * the real status in the body of the response.)
+ */
+
 abstract class Client extends \Zend_Http_Client {
 
     /**
