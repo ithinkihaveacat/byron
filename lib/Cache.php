@@ -4,8 +4,6 @@ namespace Byron;
 
 interface Cache {
     
-    public function test($key);
-    
     /**
      * Retrieves value associated with $key from the cache backend.  Because
      * backends indicate "not found" in different ways, consumers must
@@ -44,6 +42,6 @@ interface Cache {
     
     public function set($key, $value, $expires = null);
     
-    public function expire();
+    public function flush();
     
 }
