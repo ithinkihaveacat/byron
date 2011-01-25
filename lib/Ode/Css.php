@@ -13,7 +13,7 @@ class Css implements Pipe {
         $this->transformer = $transformer;
     }
     
-    public function __invoke(&$doc)
+    public function __invoke(&$doc, $args = array())
     {
         $xpath = new \Byron\Dom\DOMXPath($doc);
 

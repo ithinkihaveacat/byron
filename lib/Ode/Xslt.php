@@ -5,30 +5,27 @@ namespace Byron\Ode;
 class Xslt implements Pipe {
     
     protected $stylesheet = null;
-    protected $args = null;
     
     /**
      * @param string|DOMDocument $stylesheet
-     * @param mixed $args
      */
 
-    public function __construct($stylesheet, $args = null)
+    public function __construct($stylesheet)
     {
         if (is_string($stylesheet)) {
             $this->stylesheet = \Byron\Dom::loadXmlFile($stylesheet);
         } else {
             $this->stylesheet = $stylesheet;
         }
-        $this->args = $args;
     }
     
-    public function __invoke(&$doc)
+    public function __invoke(&$doc, $args = array())
     {
         $p = new \XSLTProcessor();
         $p->importStyleSheet($this->stylesheet->getDocument());
-
-        if ($this->args) {
-            $p->setParameter('', $this->args);
+        
+        if ($args) {
+            $p->setParameter('', $args);
         }
         
         $res = $p->transformToDoc($doc->getDocument());
