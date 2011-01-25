@@ -100,7 +100,7 @@ class Config
             return $this->decrypt($this->data[$k]);
         }
         else {
-            throw new \Exception(sprintf("fatal: key [%s] missing from [%s]", $k, join(";", $this->filename)));
+            throw new \Exception(sprintf("key [%s] missing from [%s]", $k, join(";", $this->filename)));
         }
         
     }
