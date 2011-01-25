@@ -18,7 +18,7 @@ namespace Byron;
  *         return $service;
  *     }
  *
- * But this is a bit messy an unclean.  The alternative is to create a "Broker"
+ * But this is a bit messy and unclean.  The alternative is to create a "Broker"
  * object, giving it a mechanism to create an appropriate class names for a service,
  * when that service is requested.  Then the broker can instantiate that class, passing
  * it any information it might need, like an object storing configuration details.
