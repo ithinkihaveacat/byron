@@ -11,7 +11,7 @@ namespace Byron\Client;
 
 class Flickr extends \Byron\Client {
     
-    const FLICKR_API = "http://flickr.com/services/rest/";
+    const FLICKR_API = "http://www.flickr.com/services/rest/";
     
     public function GET($method, $args = array()) {
 
@@ -37,7 +37,7 @@ class Flickr extends \Byron\Client {
     
     function photos_search($args = array()) {
         
-        $res = $this->POST("flickr.photos.search", $args);
+        $res = $this->GET("flickr.photos.search", $args);
         
         return $res;
 
@@ -77,7 +77,7 @@ class Flickr extends \Byron\Client {
     
     function people_findByUsername($username) {
         
-        $res = $this->POST("flickr.people.findByUsername", array("username" => $username));
+        $res = $this->GET("flickr.people.findByUsername", array("username" => $username));
         
         return $res["stat"] == "ok" ? $res["user"]["nsid"] : null;
         
@@ -85,7 +85,7 @@ class Flickr extends \Byron\Client {
     
     function tags_getListPhoto($photo_id) {
         
-        $res = $this->POST("flickr.tags.getListPhoto", array("photo_id" => $photo_id));
+        $res = $this->GET("flickr.tags.getListPhoto", array("photo_id" => $photo_id));
         
         return $res["stat"] == "ok" ? $res["photo"]["tags"]["tag"] : null;
         
@@ -108,7 +108,7 @@ class Flickr extends \Byron\Client {
         
         for ($page = 0; empty($limit) || (($page * $per_page) < $limit); $page++) {
             
-            $res = $this->POST("flickr.people.getPublicPhotos", array(
+            $res = $this->GET("flickr.people.getPublicPhotos", array(
                 "user_id" => $user_id, 
                 "per_page" => $per_page, 
                 "page" => $page + 1
@@ -129,7 +129,7 @@ class Flickr extends \Byron\Client {
     
     function photos_getInfo($photo_id) {
         
-        $res = $this->POST("flickr.photos.getInfo", array("photo_id" => $photo_id));
+        $res = $this->GET("flickr.photos.getInfo", array("photo_id" => $photo_id));
         
         return $res["stat"] == "ok" ? $res["photo"] : null;
                 
@@ -137,7 +137,7 @@ class Flickr extends \Byron\Client {
     
     function photos_getSizes($photo_id) {
         
-        $res = $this->POST("flickr.photos.getSizes", array("photo_id" => $photo_id));
+        $res = $this->GET("flickr.photos.getSizes", array("photo_id" => $photo_id));
         
         return $res["stat"] == "ok" ? $res["sizes"]["size"] : null;
         
