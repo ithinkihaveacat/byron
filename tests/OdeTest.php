@@ -130,9 +130,9 @@ class OdeTest extends PHPUnit_Framework_Testcase
     {
         $doc = \Byron\Dom::loadXml('<page/>');
 
-        $transformer = new \Byron\Ode\Xslt("fixtures/xsl2.xsl", array("greeting" => "Hullo, World!"));
+        $transformer = new \Byron\Ode\Xslt("fixtures/xsl2.xsl");
 
-        $transformer($doc);
+        $transformer($doc, array("greeting" => "Hullo, World!"));
 
         $this->assertXmlStringEqualsXmlString("<qqqqqq>Hullo, World!</qqqqqq>", $doc->toXml());
     }

@@ -26,7 +26,7 @@ class Css implements Pipe {
                 continue;
             }
             $tmp = $this->transformer;
-            $tmp(new \Byron\Dom\DOMElement($n), $doc);
+            $tmp(new \Byron\Dom\DOMElement($n), $doc, $args);
         }
     }
     
