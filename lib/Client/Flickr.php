@@ -12,13 +12,19 @@ namespace Byron\Client;
 class Flickr extends \Byron\Client {
     
     const FLICKR_API = "http://www.flickr.com/services/rest/";
+    const FLICKR_AUTH = "http://www.flickr.com/services/auth/";
     
     public function GET($method, $args = array()) {
-
+        
         $res = parent::GET(
             self::FLICKR_API, 
-            array_merge($args, array("api_key" => $this->getKey(), "method" => $method, "nojsoncallback" => 1, "format" => "json"))
+            $this->sign(array_merge(
+                $args, 
+                array("api_key" => $this->getApiKey(), "method" => $method, "nojsoncallback" => 1, "format" => "json")
+            ))
         );
+        
+        rawlog($res);
         
         return json_decode($res, true);
 
@@ -28,19 +34,71 @@ class Flickr extends \Byron\Client {
         
         $res = parent::POST(
             self::FLICKR_API,
-            array_merge($args, array("api_key" => $this->getKey(), "method" => $method, "nojsoncallback" => 1, "format" => "json"))
+            $this->sign(array_merge(
+                $args, 
+                array("api_key" => $this->getApiKey(), "method" => $method, "nojsoncallback" => 1, "format" => "json")
+            ))
         );
         
         return json_decode($res, true);
 
     }
     
+    public function getApiKey() {
+        $key = $this->getKey();
+        return $key["api_key"];
+    }
+    
+    public function getApiSecret() {
+        $key = $this->getKey();
+        return $key["api_secret"];
+    }
+    
+    public function getApiToken() {
+        $key = $this->getKey();
+        return $key["api_token"];
+    }
+    
+    // http://www.flickr.com/services/api/auth.howto.web.html
+    
+    public function getLoginUrl($perms = "read") {
+        return self::FLICKR_AUTH . '?' . http_build_query($this->sign(array(
+            "api_key" => $this->getApiKey(),
+            "perms" => $perms
+        )));
+    }
+    
+    public function sign($args) {
+        ksort($args);
+        $s = $this->getApiSecret();
+        foreach ($args as $k => $v) {
+            $s .= $k . $v;
+        }
+        $args["api_sig"] = md5($s);
+        return $args;
+    }
+    
+    public function auth_getToken($frob) {
+        return $this->GET("flickr.auth.getToken", array("frob" => $frob));
+    }
+    
+    public function test_login() {
+        return $this->GET("flickr.test.login", array("auth_token" => $this->getApiToken()));
+    }
+    
+    public function photosets_getPhotos($photoset_id, $extras = null) {
+        if (is_null($extras)) {
+            $extras = "license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_z, url_o";
+        }
+        return $this->GET("flickr.photosets.getPhotos", array(
+            "auth_token" => $this->getApiToken(),
+            "photoset_id" => $photoset_id,
+            "extras" => $extras
+        ));
+    }
+    
     function photos_search($args = array()) {
-        
-        $res = $this->GET("flickr.photos.search", $args);
-        
-        return $res;
-
+        return $this->GET("flickr.photos.search", $args);
     }
     
     function tags_trend($tag, $from = null, $to = null, $sample = null) {
