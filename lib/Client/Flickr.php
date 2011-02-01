@@ -24,8 +24,6 @@ class Flickr extends \Byron\Client {
             ))
         );
         
-        rawlog($res);
-        
         return json_decode($res, true);
 
     }
@@ -87,9 +85,11 @@ class Flickr extends \Byron\Client {
     }
     
     public function photosets_getPhotos($photoset_id, $extras = null) {
+        
         if (is_null($extras)) {
             $extras = "license, date_upload, date_taken, owner_name, icon_server, original_format, last_update, geo, tags, machine_tags, o_dims, views, media, path_alias, url_sq, url_t, url_s, url_m, url_z, url_o";
         }
+        
         return $this->GET("flickr.photosets.getPhotos", array(
             "auth_token" => $this->getApiToken(),
             "photoset_id" => $photoset_id,
