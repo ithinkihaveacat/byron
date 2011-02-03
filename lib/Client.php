@@ -115,9 +115,9 @@ abstract class Client extends \Zend_Http_Client {
         
         if (!$response->isSuccessful()) {
             if ($response->isError()) {
-                throw new \Exception(sprintf("server returned error for [%s]: %s", $this->getClient()->getUri(), $response->getBody()));
+                throw new \Exception(sprintf("server returned status code [%d] for [%s]", $response->getStatus(), $this->getUri()));
             } else {
-                throw new \Exception(sprintf("couldn't contact server at [%s]", $this->getClient()->getUri()));
+                throw new \Exception(sprintf("couldn't contact server at [%s]", $this->getUri()));
             }
         }
         else {
