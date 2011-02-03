@@ -46,6 +46,16 @@ class Client extends \Zend_Http_Client {
     public function getKey() {
         return $this->key;
     }
+    
+    public function setReturnResponseObject($r)
+    {
+        return $this->returnResponseObject = $r;
+    }
+    
+    public function getReturnResponseObject()
+    {
+        return $this->returnResponseObject;
+    }
 
     /**
      * 
