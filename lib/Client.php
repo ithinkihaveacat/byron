@@ -12,7 +12,7 @@ namespace Byron;
  * the real status in the body of the response.)
  */
 
-abstract class Client extends \Zend_Http_Client {
+class Client extends \Zend_Http_Client {
 
     /**
      *
@@ -34,7 +34,7 @@ abstract class Client extends \Zend_Http_Client {
 
     protected $returnResponseObject = false;
     
-    public function __construct($key)
+    public function __construct($key = null)
     {
         $this->setKey($key);
     }
