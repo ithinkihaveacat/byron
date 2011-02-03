@@ -73,7 +73,7 @@ class Broker {
 
     public function __call($name, $args) {
 
-        if (!preg_match("/^get(\w*)(Service?)$/", $name, $matches)) {
+        if (!preg_match("/^get(\w*?)(Service)?$/", $name, $matches)) {
             throw new \Exception("only calls of the form [getXxx()] are supported (not [$name()])");
         }
 
