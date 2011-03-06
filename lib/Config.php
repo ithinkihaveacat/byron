@@ -9,7 +9,7 @@
  * what the arguments meant, and their order.  It's better
  * this way, trust me!
  * 
- * @license GPL
+ * @license MIT
  * @author Michael Stillwell <mjs@beebo.org>
  */
 
