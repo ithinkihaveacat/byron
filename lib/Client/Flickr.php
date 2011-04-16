@@ -13,6 +13,22 @@ class Flickr extends \Byron\Client {
     
     const FLICKR_API = "http://www.flickr.com/services/rest/";
     const FLICKR_AUTH = "http://www.flickr.com/services/auth/";
+
+    public function __construct($key) // Makes $key mandatory
+    {
+        if (!array_key_exists("api_key", $key)) {
+            throw new \Exception("key [api_key] not provided");
+        }
+        if (empty($key["api_key"])) {
+            throw new \Exception("key [api_key] is empty");
+        }
+        foreach (array("api_secret", "api_token") as $k) {
+            if (empty($key[$k])) {
+                throw new \Exception("key [$k] is empty");
+            }
+        }
+        parent::__construct($key);
+    }
     
     public function GET($method, $args = array()) {
         
