@@ -158,12 +158,22 @@ class Config
     }
 
     public function encrypt($s) {
-        return 'encrypted:' . openssl_encrypt($s, "aes-256-cbc", $this->getPassword(), false, "8a43818f1ec21007");
+        $res = openssl_encrypt($s, "aes-256-cbc", $this->getPassword(), false, "8a43818f1ec21007");
+        if ($res) {
+            return 'encrypted:' . $res;
+        } else {
+            throw new \Exception(openssl_error_string());
+        }
     }
 
     public function decrypt($s) {
         if (strpos($s, "encrypted:") === 0) {
-            return openssl_decrypt(substr($s, strlen("encrypted:")), "aes-256-cbc", $this->getPassword(), false, "8a43818f1ec21007");
+            $res = openssl_decrypt(substr($s, strlen("encrypted:")), "aes-256-cbc", $this->getPassword(), false, "8a43818f1ec21007");
+            if ($res) {
+                return $res;
+            } else {
+                throw new \Exception(openssl_error_string());
+            }
         } else {
             return $s;
         }
