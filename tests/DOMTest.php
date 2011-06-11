@@ -208,8 +208,8 @@ class DOMTest extends PHPUnit_Framework_Testcase
         $this->assertXmlStringEqualsXmlString("<page><img foo='1' bar='2'/></page>", $doc->toXml());
     }
     
-    public function testFoo() {
-        
+    public function testFoo()
+    {
         $doc = \Byron\DOM::loadXml("<root><name>Michael</name></root>");
         $xpath = new \DOMXPath($doc->getDocument());
         $this->assertEquals("Michael", $xpath->evaluate("string(/root/name)"));
@@ -217,11 +217,10 @@ class DOMTest extends PHPUnit_Framework_Testcase
         $doc->loadXml("<root><name>Clem</name></root>");
         $xpath = new DOMXPath($doc->getDocument());
         $this->assertEquals("Clem", $xpath->evaluate("string(/root/name)"));
-        
     }
     
-    public function testTypes() {
-        
+    public function testTypes()
+    {
         $doc = \Byron\DOM::loadXML("<root><name>Michael</name></root>");
         
         // Basic check of type
@@ -229,11 +228,10 @@ class DOMTest extends PHPUnit_Framework_Testcase
         $this->assertNotNull($doc);
         $this->assertType('\Byron\DOM\DOMDocument', $doc);
         $this->assertType('DOMDocument', $doc->getDocument());
-        
     }
     
-    public function testXPath2() {
-        
+    public function testXPath2()
+    {
         $doc = \Byron\DOM::loadXML("<root><name>Michael</name></root>");
         
         // Check XPath works
@@ -250,11 +248,10 @@ class DOMTest extends PHPUnit_Framework_Testcase
         $xpath = new \Byron\DOM\DOMXpath($doc);
         
         $this->assertEquals("Clem", $xpath->evaluate("string(/root/name)"));
-        
     }
     
-    public function testXPath3() {
-        
+    public function testXPath3()
+    {
         $doc = \Byron\DOM::loadXML("<root><name>Michael</name></root>");
         
         // Check XPath works
@@ -271,11 +268,10 @@ class DOMTest extends PHPUnit_Framework_Testcase
         $xpath = new \Byron\DOM\DOMXPath($doc);
         
         $this->assertEquals("Clem", $xpath->evaluate("string(/root/name)"));
-        
     }
 
-    public function testToArray() {
-        
+    public function testToArray()
+    {
         $doc = \Byron\DOM::loadXML("<root><entry><name>Michael</name><email>mjs@beebo.org</email></entry><entry><name>Clem</name><email>clem@beebo.org</email></entry></root>");
         
         $entries = $doc->toArray("/root/entry");
@@ -287,11 +283,10 @@ class DOMTest extends PHPUnit_Framework_Testcase
         
         $this->assertEquals("Clem", $entries[1]["name"]);
         $this->assertEquals("clem@beebo.org", $entries[1]["email"]);
-        
     }
     
-    public function testElementToArraySingleValue() {
-        
+    public function testElementToArraySingleValue()
+    {
         $doc = \Byron\DOM::loadXML('<entry><foo>jjj</foo></entry>');
         
         $element = new \Byron\DOM\DOMElement($doc->documentElement);
@@ -299,11 +294,10 @@ class DOMTest extends PHPUnit_Framework_Testcase
         $object = $element->toArray();
         
         $this->assertEquals(array("foo" => "jjj"), $object); // Note: expected value is not array("foo" => array("jjj"))
-
     }
     
-    public function testElementToArrayDoubleValue() {
-        
+    public function testElementToArrayDoubleValue()
+    {
         $doc = \Byron\DOM::loadXML('<entry><foo>jjj</foo><foo>bar</foo></entry>');
         
         $element = new \Byron\DOM\DOMElement($doc->documentElement);
@@ -311,11 +305,10 @@ class DOMTest extends PHPUnit_Framework_Testcase
         $object = $element->toArray();
         
         $this->assertEquals(array("foo" => array("jjj", "bar")), $object); // Compare to above
-
     }
     
-    public function testElementToArrayTripleValue() {
-        
+    public function testElementToArrayTripleValue()
+    {
         $doc = \Byron\DOM::loadXML('<entry><foo>jjj</foo><foo>bar</foo><foo>baz</foo></entry>');
         
         $element = new \Byron\DOM\DOMElement($doc->documentElement);
@@ -323,11 +316,10 @@ class DOMTest extends PHPUnit_Framework_Testcase
         $object = $element->toArray();
         
         $this->assertEquals(array("foo" => array("jjj", "bar", "baz")), $object);
-
     }
     
-    public function testElementToArrayTwoDifferentValues() {
-        
+    public function testElementToArrayTwoDifferentValues()
+    {
         $doc = \Byron\DOM::loadXML('<entry><foo>jjj</foo><bar>bar</bar></entry>');
         
         $element = new \Byron\DOM\DOMElement($doc->documentElement);
@@ -335,12 +327,11 @@ class DOMTest extends PHPUnit_Framework_Testcase
         $object = $element->toArray();
         
         $this->assertEquals(array("foo" => "jjj", "bar" => "bar"), $object);
-
     }
     
-    public function testElementLarge() {
-
-          $doc = \Byron\DOM::loadXML('<entry xmlns:google="http://base.google.com/ns/1.0" xmlns:twitter="http://api.twitter.com/">
+    public function testElementLarge()
+    {
+        $doc = \Byron\DOM::loadXML('<entry xmlns:google="http://base.google.com/ns/1.0" xmlns:twitter="http://api.twitter.com/">
       <id>tag:search.twitter.com,2005:7273675206</id>
       <published>2010-01-01T17:19:23Z</published>
       <link type="text/html" href="http://twitter.com/mjcld2009/statuses/7273675206" rel="alternate"/>
@@ -359,67 +350,79 @@ class DOMTest extends PHPUnit_Framework_Testcase
       </author>
     </entry>');
 
-          $element = new \Byron\DOM\DOMElement($doc->documentElement);
+        $element = new \Byron\DOM\DOMElement($doc->documentElement);
 
-          $object = $element->toArray();
+        $object = $element->toArray();
           
-          $this->assertEquals($object['author'][0]['uri'], 'http://twitter.com/mjcld2009');
-          $this->assertEquals($object['published'], '2010-01-01T17:19:23Z');
-          $this->assertEquals($object['link'], array('', ''));
-          $this->assertEquals($object['twitter:geo'], '');
+        $this->assertEquals($object['author'][0]['uri'], 'http://twitter.com/mjcld2009');
+        $this->assertEquals($object['published'], '2010-01-01T17:19:23Z');
+        $this->assertEquals($object['link'], array('', ''));
+        $this->assertEquals($object['twitter:geo'], '');
+    }
+      
+    public function testAppendFragment()
+    {
+        $doc = \Byron\DOM::loadXML('<root><p></p></root>');
 
-      }
-      
-      public function testAppendFragment() {
-          
-          $doc = \Byron\DOM::loadXML('<root><p></p></root>');
-          
-          $element = new \Byron\Dom\DOMElement($doc->documentElement->firstChild);
-          
-          $element->appendFragment('<img src="foo.jpg"/>');
-          
-          $this->assertXmlStringEqualsXmlString('<root><p><img src="foo.jpg"/></p></root>', $doc->toXml());
-      }
-      
-      public function testSetXml() {
-          
-          $doc = \Byron\DOM::loadXML('<root><p>Hi</p><p/></root>');
-          
-          $element = new \Byron\Dom\DOMElement($doc->documentElement->firstChild);
-          
-          $element->setXml('<img src="foo.jpg"/>');
-          
-          $this->assertXmlStringEqualsXmlString('<root><img src="foo.jpg"/><p/></root>', $doc->toXml());
-          
-      }
-      
-      public function testBodyIsText() {
-          
-          $doc = \Byron\DOM::loadXML('<quotes><quote source="p. 45">Appeals shall not be used...</quote></quotes>');
-          
-          $expected = array(
-              array(
-                  "source" => "p. 45",
-                  "*" => "Appeals shall not be used..."
-              )
-          );
-          
-          $this->assertEquals($expected, $doc->toArray("/quotes/quote"));
+        $element = new \Byron\Dom\DOMElement($doc->documentElement->firstChild);
 
-      }
+        $element->appendFragment('<img src="foo.jpg"/>');
+
+        $this->assertXmlStringEqualsXmlString('<root><p><img src="foo.jpg"/></p></root>', $doc->toXml());
+    }
       
-      public function testBodyIsMarkedUpText() {
+    public function testSetXml()
+    {
+        $doc = \Byron\DOM::loadXML('<root><p>Hi</p><p/></root>');
+
+        $element = new \Byron\Dom\DOMElement($doc->documentElement->firstChild);
+
+        $element->setXml('<img src="foo.jpg"/>');
+
+        $this->assertXmlStringEqualsXmlString('<root><img src="foo.jpg"/><p/></root>', $doc->toXml());
+    }
+      
+    public function testBodyIsText()
+    {
           
-          $doc = \Byron\DOM::loadXML('<quotes><quote source="p. 45">Appeals shall <em>not</em> be used...</quote></quotes>');
+        $doc = \Byron\DOM::loadXML('<quotes><quote source="p. 45">Appeals shall not be used...</quote></quotes>');
+
+        $expected = array(
+          array(
+              "source" => "p. 45",
+              "*" => "Appeals shall not be used..."
+          )
+        );
+
+        $this->assertEquals($expected, $doc->toArray("/quotes/quote"));
+    }      
+      
+    public function testBodyIsMarkedUpText()
+    {
+        $doc = \Byron\DOM::loadXML('<quotes><quote source="p. 45">Appeals shall <em>not</em> be used...</quote></quotes>');
           
-          $expected = array(
-              array(
-                  "source" => "p. 45",
-                  "*" => "Appeals shall <em>not</em> be used..."
-              )
-          );
+        $expected = array(
+          array(
+              "source" => "p. 45",
+              "*" => "Appeals shall <em>not</em> be used..."
+          )
+        );
           
-          $this->assertEquals($expected, $doc->toArray("/quotes/quote"));
-          
-      }
+        $this->assertEquals($expected, $doc->toArray("/quotes/quote"));
+    }
+
+    public function testDOMLoadXml_EntitiesTransformOn_Success()
+    {
+        $doc = \Byron\Dom::loadXML('<root>&ldquo;&rdquo;</root>', true);
+        $this->assertXmlStringEqualsXmlString('<root>&#8220;&#8221;</root>', $doc->toXml());
+    }
+
+    /**
+     * @expectedException PHPUnit_Framework_Error
+     */
+    public function testDOMLoadXml_EntitiesTransformOff_Fail()
+    {
+        $doc = \Byron\Dom::loadXML('<root>&ldquo;&rdquo;</root>', false);
+    }
+
 }

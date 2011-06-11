@@ -43,13 +43,23 @@ class Dom {
      * @return \Byron\Dom\DOMDocument Does everything a DOMDocument does, but has additional helper functions
      */
 
-    static function loadXmlFile($filename) {
-        $doc = new \DOMDocument();
-        $res = $doc->load($filename);
-        if (!$res) {
-            throw new \Exception("can't load [$filename]");
+    static function loadXmlFile($filename, $transform = false)
+    {
+        if ($transform) {
+            rawlog("transforming...");
+            $contents = file_get_contents($filename);
+            if ($contents === false) {
+                throw new \Exception("can't load [$filename]");
+            }
+            return self::loadXml($contents, $transform);         
+        } else {
+            $doc = new \DOMDocument();
+            $res = $doc->load($filename);
+            if (!$res) {
+                throw new \Exception("can't load [$filename]");
+            }
+            return new Dom\DOMDocument($doc);
         }
-        return new Dom\DOMDocument($doc);
     }
 
     /**
@@ -60,10 +70,23 @@ class Dom {
      * @return \Byron\Dom\DOMDocument Does everything a DOMDocument does, but has additional helper functions
      */
 
-    static function loadXml($s) {
+    static function loadXml($s, $transform = false)
+    {
+        if ($transform) {
+            $s = strtr($s, array(
+                "&hellip;" => "&#8230;",
+                "&ndash;" => "&#8211;",
+                "&mdash;" => "&#8212;",
+                "&lsquo;" => "&#8216;",
+                "&rsquo;" => "&#8217;",
+                "&ldquo;" => "&#8220;",
+                "&rdquo;" => "&#8221;"
+            ));
+        }
+
         $doc = new \DOMDocument();
-        $doc->loadXML($s);
-        return new Dom\DOMDocument($doc);
+        $ret = $doc->loadXML($s);
+        return $ret ? new Dom\DOMDocument($doc) : false;
     }
 
 }
