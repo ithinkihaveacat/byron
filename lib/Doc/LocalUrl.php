@@ -103,7 +103,7 @@ class LocalUrl
         
         $args = array(
             "chs" => sprintf("%dx%d", $width, $height),
-            "chf" => "bg,s,e8e8e8", // background colour
+            "chf" => "bg,s,ffffff", // background colour
             "cht" => "ls",
             "chco" => "808080",
             "chm" => "B,d0d0d0,0,0,0",
