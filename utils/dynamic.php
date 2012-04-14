@@ -99,7 +99,7 @@ namespace {
     }
 
     function dreset() {
-        return \Byron\Dvar::getInstance()->reset();
+        return dvar()->reset();
     }
 
 }

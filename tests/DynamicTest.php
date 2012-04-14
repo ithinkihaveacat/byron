@@ -2,7 +2,21 @@
 
 namespace Local {
 
-    class Foo { }
+    class Foo
+    {
+        protected $data = null;
+
+        public function __construct($d = null)
+        {
+            $this->data = $d;
+        }
+
+        public function getData()
+        {
+            return $this->data;
+        }
+    }
+
     class Bar extends Foo {}
 
 }
@@ -73,6 +87,15 @@ namespace {
             $this->assertInstanceOf('Local\Foo', $foo);
             $this->assertNotInstanceOf('Local\Bar', $foo);
         }
+
+        public function testDnew_ConstructorArguments_ArgumentsPreserved()
+        {
+            dpush('Local\Foo', 'Local\Foo');
+            $foo = dnew('Local\Foo', "clem");
+            $this->assertInstanceOf("Local\Foo", $foo);
+            $this->assertEquals("clem", $foo->getData());
+        }
+
     }
 
 }
