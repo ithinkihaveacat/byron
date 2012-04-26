@@ -1,6 +1,6 @@
 <?php
 
-namespace Byron\Dom;
+namespace Byron\DOM;
 
 class DOMXPath extends \DOMXPath
 {

@@ -4,7 +4,7 @@
  * This class proxies a DOMDocument, adding a few convenience functions.
  */
 
-namespace Byron\Dom;
+namespace Byron\DOM;
 
 class DOMDocument extends \Byron\Proxy {
     
