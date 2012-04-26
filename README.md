@@ -10,6 +10,14 @@ well.
 
 Hahahahahaha.
 
+# Requirements
+
+    $ ./configure --enable-mbstring --with-openssl --with-xsl && make && make install
+
+# Build Status
+
+[![Build Status](https://secure.travis-ci.org/ithinkihaveacat/byron.png)](http://travis-ci.org/ithinkihaveacat/byron)
+
 # Author
 
 Michael Stillwell <mjs@beebo.org>
