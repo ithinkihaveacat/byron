@@ -131,7 +131,7 @@ class DOMTest extends PHPUnit_Framework_Testcase
     
     public function testXPath()
     {
-        $doc = \Byron\DOM::loadXmlFile("fixtures/domtest2.xml");
+        $doc = \Byron\DOM::loadXmlFile(__DIR__ . "/../fixtures/domtest2.xml");
         $xpath = new \Byron\DOM\DOMXPath($doc);
         $this->assertEquals("NL17626133", $xpath->evaluate("string(/ORDERS/ORDER[1]/ORDER_ID)"));
     }
@@ -151,7 +151,7 @@ class DOMTest extends PHPUnit_Framework_Testcase
     
     public function testToArray2()
     {
-        $doc = \Byron\DOM::loadXmlFile("fixtures/domtest1.xml");
+        $doc = \Byron\DOM::loadXmlFile(__DIR__ . "/../fixtures/domtest1.xml");
 
         $res = $doc->toArray('/STATUS_MESSAGES/STATUS_MESSAGE/ORDER');
 
@@ -232,8 +232,8 @@ class DOMTest extends PHPUnit_Framework_Testcase
         // Basic check of type
         
         $this->assertNotNull($doc);
-        $this->assertType('\Byron\DOM\DOMDocument', $doc);
-        $this->assertType('DOMDocument', $doc->getDocument());
+        $this->assertInstanceOf('\Byron\DOM\DOMDocument', $doc);
+        $this->assertInstanceOf('DOMDocument', $doc->getDocument());
     }
     
     public function testXPath2()

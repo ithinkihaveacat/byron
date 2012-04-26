@@ -2,20 +2,20 @@
 
 namespace Byron;
 
-class Dom {
+class DOM {
     
     /**
      * Takes the filename of a HTML file, returns a proxied DOMDocument object that
      * does everything a DOMDocument does, but with some extra convenience functions.
      *
      * @param string $filename
-     * @return \Byron\Dom\DOMDocument Does everything a DOMDocument does, but has additional helper functions
+     * @return \Byron\DOM\DOMDocument Does everything a DOMDocument does, but has additional helper functions
      */
 
     static function loadHtmlFile($filename) {
         $doc = new \DOMDocument();
         $doc->loadHTMLFile($filename);
-        return new Dom\DOMDocument($doc);
+        return new DOM\DOMDocument($doc);
     }
 
     /**
@@ -23,13 +23,13 @@ class Dom {
      * does everything a DOMDocument does, but with some extra convenience functions.
      *
      * @param string $s XML string
-     * @return \Byron\Dom\DOMDocument Does everything a DOMDocument does, but has additional helper functions
+     * @return \Byron\DOM\DOMDocument Does everything a DOMDocument does, but has additional helper functions
      */
 
     static function loadHtml($s) {
         $doc = new \DOMDocument();
         $doc->loadHTML($s);
-        return new Dom\DOMDocument($doc);
+        return new DOM\DOMDocument($doc);
     }
 
     /**
@@ -40,7 +40,7 @@ class Dom {
      * consistency.)
      *
      * @param string $filename
-     * @return \Byron\Dom\DOMDocument Does everything a DOMDocument does, but has additional helper functions
+     * @return \Byron\DOM\DOMDocument Does everything a DOMDocument does, but has additional helper functions
      */
 
     static function loadXmlFile($filename, $transform = false)
@@ -58,7 +58,7 @@ class Dom {
             if (!$res) {
                 throw new \Exception("can't load [$filename]");
             }
-            return new Dom\DOMDocument($doc);
+            return new DOM\DOMDocument($doc);
         }
     }
 
@@ -67,7 +67,7 @@ class Dom {
      * does everything a DOMDocument does, but with some extra convenience functions.
      *
      * @param string $s XML string
-     * @return \Byron\Dom\DOMDocument Does everything a DOMDocument does, but has additional helper functions
+     * @return \Byron\DOM\DOMDocument Does everything a DOMDocument does, but has additional helper functions
      */
 
     static function loadXml($s, $transform = false)
@@ -86,7 +86,7 @@ class Dom {
 
         $doc = new \DOMDocument();
         $ret = $doc->loadXML($s);
-        return $ret ? new Dom\DOMDocument($doc) : false;
+        return $ret ? new DOM\DOMDocument($doc) : false;
     }
 
 }
