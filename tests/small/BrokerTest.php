@@ -64,7 +64,7 @@ namespace {
     
         public function testShared()
         {
-            $config = new \Byron\Config("fixtures/config.ini");
+            $config = new \Byron\Config(__DIR__ . "/../fixtures/config.ini");
             $broker = new \Byron\Broker("Local%s", $config);
         
             $this->assertEquals("Hello, World!", $broker->getQuuxService());
