@@ -125,7 +125,7 @@ class OdeTest extends PHPUnit_Framework_Testcase
     {
         $doc = \Byron\Dom::loadXml('<page/>');
         
-        $transformer = new \Byron\Ode\Xslt("fixtures/xsl1.xsl");
+        $transformer = new \Byron\Ode\Xslt(__DIR__ . "/../fixtures/xsl1.xsl");
         
         $transformer($doc);
         
@@ -136,7 +136,7 @@ class OdeTest extends PHPUnit_Framework_Testcase
     {
         $doc = \Byron\Dom::loadXml('<page/>');
 
-        $transformer = new \Byron\Ode\Xslt("fixtures/xsl2.xsl");
+        $transformer = new \Byron\Ode\Xslt(__DIR__ . "/../fixtures/xsl2.xsl");
 
         $transformer($doc, array("greeting" => "Hullo, World!"));
 

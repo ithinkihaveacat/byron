@@ -56,7 +56,7 @@ class Config
     public function load($filename) {
     
         if (!file_exists($filename)) {
-            throw new \Exception("configuration file [$filename] does not exist");
+            throw new \InvalidArgumentException("configuration file [$filename] does not exist");
         }
         else {
             $filename = realpath($filename);
@@ -65,7 +65,7 @@ class Config
         $d = @parse_ini_file($filename);
         
         if (is_null($d)) {
-            throw new \Exception("couldn't parse configuration file [$filename]");
+            throw new \InvalidArgumentException("couldn't parse configuration file [$filename]");
         }
         
         $this->data = array_merge($this->data, $d);
@@ -100,7 +100,7 @@ class Config
             return $this->decrypt($this->data[$k]);
         }
         else {
-            throw new \Exception(sprintf("key [%s] missing from [%s]", $k, join(";", $this->filename)));
+            throw new \InvalidArgumentException(sprintf("key [%s] missing from [%s]", $k, join(";", $this->filename)));
         }
         
     }
@@ -141,12 +141,12 @@ class Config
         if (is_null($this->password)) {
 
             if (!defined('DOCUMENT_ROOT')) {
-                throw new \Exception("password is not set, and constant [DOCUMENT_ROOT] is undefined");
+                throw new \InvalidArgumentException("password is not set, and constant [DOCUMENT_ROOT] is undefined");
             }
 
             $filename = DOCUMENT_ROOT . "/../config/password";
             if (!file_exists($filename)) {
-                throw new \Exception("password file [$filename] does not exist");
+                throw new \InvalidArgumentException("password file [$filename] does not exist");
             }
 
             $this->password = file_get_contents($filename);
@@ -162,7 +162,7 @@ class Config
         if ($res) {
             return 'encrypted:' . $res;
         } else {
-            throw new \Exception(openssl_error_string());
+            throw new \RuntimeException(openssl_error_string());
         }
     }
 
@@ -172,7 +172,7 @@ class Config
             if ($res) {
                 return $res;
             } else {
-                throw new \Exception(openssl_error_string());
+                throw new \RuntimeException(openssl_error_string());
             }
         } else {
             return $s;

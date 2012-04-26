@@ -11,16 +11,16 @@ class ConfigTest extends PHPUnit_Framework_Testcase {
     
     public function testConfigFileNotFound()
     {
-        $this->setExpectedException("Exception");
+        $this->setExpectedException("InvalidArgumentException");
         
-        $config = new \Byron\Config("fixtures/doesnotexist.ini");
+        $config = new \Byron\Config(__DIR__ . "/../fixtures/doesnotexist.ini");
     }
     
     public function testNoPasswordSet()
     {
-        $this->setExpectedException("Exception");
+        $this->setExpectedException("InvalidArgumentException");
         
-        $config = new \Byron\Config("fixtures/config.ini");
+        $config = new \Byron\Config(__DIR__ . "/../fixtures/config.ini");
         
         $config->getMandatory("config_test2");
     }
@@ -29,7 +29,7 @@ class ConfigTest extends PHPUnit_Framework_Testcase {
     {
         $s = "Hello, World!";
 
-        $config = new \Byron\Config("fixtures/config.ini");
+        $config = new \Byron\Config(__DIR__ . "/../fixtures/config.ini");
         $config->setPassword("qqqqqq");
 
         $v = $config->encrypt($s);
@@ -40,7 +40,7 @@ class ConfigTest extends PHPUnit_Framework_Testcase {
 
     public function testConfig()
     {
-        $config = new \Byron\Config("fixtures/config.ini");
+        $config = new \Byron\Config(__DIR__ . "/../fixtures/config.ini");
         $config->setPassword("qqqqqq");
 
         $s = "Hello, World!";
