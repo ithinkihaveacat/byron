@@ -74,7 +74,7 @@ class Broker {
     public function __call($name, $args) {
 
         if (!preg_match("/^get(\w*?)(Service)?$/", $name, $matches)) {
-            throw new \Exception("only calls of the form [getXxx()] are supported (not [$name()])");
+            throw new \BadMethodCallException("only calls of the form [getXxx()] are supported (not [$name()])");
         }
 
         // TODO Implement some caching?
@@ -82,13 +82,13 @@ class Broker {
         $class = sprintf($this->getFormat(), ucfirst($matches[1]));
         
         if (!class_exists($class)) {
-            throw new \Exception("can't find class [$class]");
+            throw new \BadMethodCallException("can't find class [$class]");
         }
 
         $obj = new $class($this);
 
         if (!is_a($obj, '\Byron\Broker\Plugin')) {
-            throw new \Exception("class [$class] does not extend \Byron\Broker\Plugin");
+            throw new \RuntimeException("class [$class] does not extend \Byron\Broker\Plugin");
         }
 
         return call_user_func_array(array($obj, "getService"), $args);

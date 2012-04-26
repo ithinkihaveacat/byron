@@ -46,7 +46,7 @@ namespace {
     
         public function testExtendsWrongClass()
         {
-            $this->setExpectedException("Exception");
+            $this->setExpectedException("RuntimeException");
         
             $broker = new \Byron\Broker("Local%s");
         
@@ -55,7 +55,7 @@ namespace {
     
         public function testMissingService()
         {
-            $this->setExpectedException("Exception");
+            $this->setExpectedException("BadMethodCallException");
         
             $broker = new \Byron\Broker("Local%s");
         
