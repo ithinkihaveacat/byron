@@ -1,6 +1,13 @@
 <?php
 
 class ConfigTest extends PHPUnit_Framework_Testcase {
+
+    public function setUp()
+    {
+        if (!extension_loaded('openssl')) {
+            $this->markTestSkipped('The [openssl] extension is not loaded');
+        }        
+    }
     
     public function testConfigFileNotFound()
     {

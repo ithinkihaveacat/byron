@@ -2,7 +2,16 @@
 
 class DOMTest extends PHPUnit_Framework_Testcase
 {
-
+    public function setUp()
+    {
+        if (!extension_loaded('mbstring')) {
+            $this->markTestSkipped('The [mbstring] extension is not loaded');
+        }        
+        if (!extension_loaded('xsl')) {
+            $this->markTestSkipped('The [mbstring] extension is not loaded');
+        }        
+    }
+    
     public function testLoad()
     {
         $doc = \Byron\DOM::loadXml("<root id='foo'/>");

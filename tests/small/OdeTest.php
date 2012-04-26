@@ -2,6 +2,12 @@
 
 class OdeTest extends PHPUnit_Framework_Testcase
 {
+    public function setUp()
+    {
+        if (!extension_loaded('xsl')) {
+            $this->markTestSkipped('The [xsl] extension is not loaded');
+        }        
+    }
     
     public function testXpathMatchRoot()
     {
