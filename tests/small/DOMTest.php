@@ -370,7 +370,7 @@ class DOMTest extends PHPUnit_Framework_Testcase
     {
         $doc = \Byron\DOM::loadXML('<root><p></p></root>');
 
-        $element = new \Byron\Dom\DOMElement($doc->documentElement->firstChild);
+        $element = new \Byron\DOM\DOMElement($doc->documentElement->firstChild);
 
         $element->appendFragment('<img src="foo.jpg"/>');
 
@@ -381,7 +381,7 @@ class DOMTest extends PHPUnit_Framework_Testcase
     {
         $doc = \Byron\DOM::loadXML('<root><p>Hi</p><p/></root>');
 
-        $element = new \Byron\Dom\DOMElement($doc->documentElement->firstChild);
+        $element = new \Byron\DOM\DOMElement($doc->documentElement->firstChild);
 
         $element->setXml('<img src="foo.jpg"/>');
 
@@ -419,7 +419,7 @@ class DOMTest extends PHPUnit_Framework_Testcase
 
     public function testDOMLoadXml_EntitiesTransformOn_Success()
     {
-        $doc = \Byron\Dom::loadXML('<root>&ldquo;&rdquo;</root>', true);
+        $doc = \Byron\DOM::loadXML('<root>&ldquo;&rdquo;</root>', true);
         $this->assertXmlStringEqualsXmlString('<root>&#8220;&#8221;</root>', $doc->toXml());
     }
 
@@ -428,7 +428,7 @@ class DOMTest extends PHPUnit_Framework_Testcase
      */
     public function testDOMLoadXml_EntitiesTransformOff_Fail()
     {
-        $doc = \Byron\Dom::loadXML('<root>&ldquo;&rdquo;</root>', false);
+        $doc = \Byron\DOM::loadXML('<root>&ldquo;&rdquo;</root>', false);
     }
 
 }

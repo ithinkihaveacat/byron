@@ -15,7 +15,7 @@ class Xpath implements Pipe {
     
     public function __invoke(&$doc, $args = array())
     {
-        $xpath = new \Byron\Dom\DOMXPath($doc);
+        $xpath = new \Byron\DOM\DOMXPath($doc);
 
         $nl = $xpath->query($this->selector);
         $len = $nl->length;
@@ -26,7 +26,7 @@ class Xpath implements Pipe {
                 continue;
             }
             $tmp = $this->transformer;
-            $tmp(new \Byron\Dom\DOMElement($n), $doc, $args);
+            $tmp(new \Byron\DOM\DOMElement($n), $doc, $args);
         }
     }
     

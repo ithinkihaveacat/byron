@@ -115,8 +115,8 @@ class DOMElement extends \Byron\Proxy {
     /**
      * Converts an array to XML, and add to the element as attributes.  Example:
      * 
-     *   $doc = \Byron\Dom::loadXML("<root/>");
-     *   $e = new \Byron\Dom\DOMElement($doc->documentElement);
+     *   $doc = \Byron\DOM::loadXML("<root/>");
+     *   $e = new \Byron\DOM\DOMElement($doc->documentElement);
      *   $e->appendAttributeArray(array("name" => "Michael", "email" => "michael@example.com"));
      *   echo $doc->saveXML();
      * 
@@ -153,7 +153,7 @@ class DOMElement extends \Byron\Proxy {
      * values become the attributes' values.
      *
      * @param array $hash
-     * @return \Byron\Dom\DOMElement
+     * @return \Byron\DOM\DOMElement
      */
 
     public function appendAttributeArray($hash)
@@ -170,7 +170,7 @@ class DOMElement extends \Byron\Proxy {
      * attributes.
      * 
      * @param array $hash
-     * @retur \Byron\Dom\DOMElement
+     * @retur \Byron\DOM\DOMElement
      */
     
     public function setAttributeArray($hash)
@@ -190,7 +190,7 @@ class DOMElement extends \Byron\Proxy {
      * $e->appendFragment("<name>Michael</name>") results in "<foo><name>Michael</name></foo>". 
      * 
      * @param string $s
-     * @return \Byron\Dom\DOMElement
+     * @return \Byron\DOM\DOMElement
      */
     
     function appendFragment($s) {

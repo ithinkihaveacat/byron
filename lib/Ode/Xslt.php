@@ -13,7 +13,7 @@ class Xslt implements Pipe {
     public function __construct($stylesheet)
     {
         if (is_string($stylesheet)) {
-            $this->stylesheet = \Byron\Dom::loadXmlFile($stylesheet);
+            $this->stylesheet = \Byron\DOM::loadXmlFile($stylesheet);
         } else {
             $this->stylesheet = $stylesheet;
         }
@@ -34,7 +34,7 @@ class Xslt implements Pipe {
             throw new \Exception("transformation by [$this->filename] failed");
         }
         
-        $doc = new \Byron\Dom\DOMDocument($res);
+        $doc = new \Byron\DOM\DOMDocument($res);
     }
     
 }

@@ -11,7 +11,7 @@ class OdeTest extends PHPUnit_Framework_Testcase
     
     public function testXpathMatchRoot()
     {
-        $doc = \Byron\Dom::loadXml("<root/>");
+        $doc = \Byron\DOM::loadXml("<root/>");
 
         $transformer = new \Byron\Ode\Xpath("/root", function($node, $doc) {
             $node->appendAttributeArray(array("id" => "yes"));
@@ -24,7 +24,7 @@ class OdeTest extends PHPUnit_Framework_Testcase
     
     public function testXpathNoMatch()
     {
-        $doc = \Byron\Dom::loadXml("<root/>");
+        $doc = \Byron\DOM::loadXml("<root/>");
         
         $i = 0;
         
@@ -40,7 +40,7 @@ class OdeTest extends PHPUnit_Framework_Testcase
     
     public function testXpathMatchNoWidthOrHeight()
     {
-        $doc = \Byron\Dom::loadXml('<root><img src="foo.jpg" width="600" height="400"/><img src="bar.jpg" width="7"/></root>');
+        $doc = \Byron\DOM::loadXml('<root><img src="foo.jpg" width="600" height="400"/><img src="bar.jpg" width="7"/></root>');
         
         $transformer = new \Byron\Ode\Xpath("img[not(@width) or not(@height)]", function($node, $doc) {
             $node->appendAttributeArray(array("width" => 200, "height" => 100));
@@ -57,7 +57,7 @@ class OdeTest extends PHPUnit_Framework_Testcase
     
     public function testCssNoMatch()
     {
-        $doc = \Byron\Dom::loadXml("<root/>");
+        $doc = \Byron\DOM::loadXml("<root/>");
         
         $i = 0;
         
@@ -89,7 +89,7 @@ class OdeTest extends PHPUnit_Framework_Testcase
 
     public function testCssMatchClass()
     {
-        $doc = \Byron\Dom::loadXml('<page><p class="foo"/><p/></page>');
+        $doc = \Byron\DOM::loadXml('<page><p class="foo"/><p/></page>');
         
         $i = 0;
 
@@ -106,7 +106,7 @@ class OdeTest extends PHPUnit_Framework_Testcase
 
     public function testCssMatchAll()
     {
-        $doc = \Byron\Dom::loadXml('<page><p class="foo"/><p/></page>');
+        $doc = \Byron\DOM::loadXml('<page><p class="foo"/><p/></page>');
         
         $i = 0;
 
@@ -123,7 +123,7 @@ class OdeTest extends PHPUnit_Framework_Testcase
     
     public function testXsl1()
     {
-        $doc = \Byron\Dom::loadXml('<page/>');
+        $doc = \Byron\DOM::loadXml('<page/>');
         
         $transformer = new \Byron\Ode\Xslt(__DIR__ . "/../fixtures/xsl1.xsl");
         
@@ -134,7 +134,7 @@ class OdeTest extends PHPUnit_Framework_Testcase
 
     public function testXslWithArgs()
     {
-        $doc = \Byron\Dom::loadXml('<page/>');
+        $doc = \Byron\DOM::loadXml('<page/>');
 
         $transformer = new \Byron\Ode\Xslt(__DIR__ . "/../fixtures/xsl2.xsl");
 
@@ -145,7 +145,7 @@ class OdeTest extends PHPUnit_Framework_Testcase
     
     public function testReplace()
     {
-        $doc = \Byron\Dom::loadXml('<page class="qqqqqq"><sidebar/></page>');
+        $doc = \Byron\DOM::loadXml('<page class="qqqqqq"><sidebar/></page>');
         
         $transformer = new \Byron\Ode\Css("sidebar", function($node, $doc) {
             $node->setXml('<p class="foo">Maybe this <em>works</em>.</p>');
