@@ -25,6 +25,7 @@ spl_autoload_register(function ($klass) {
 
 set_include_path(join(PATH_SEPARATOR, array(
     __DIR__ . "/../../zend-framework/library",
+    __DIR__ . "/../zend-framework/library", # For http://travis-ci.org
     get_include_path()
 )));
 

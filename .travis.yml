@@ -4,7 +4,12 @@ php:
   - 5.3
   - 5.4
 
-script: phpunit -c tests/phpunit.xml.dist tests/small
+before_script: 
+  - git clone --depth 1 git://github.com/ithinkihaveacat/zend-framework-1.11.9.git zend-framework
+
+script: 
+  - phpunit -c tests/phpunit.xml.dist tests/small
+  - phpunit -c tests/phpunit.xml.dist tests/medium
 
 notifications:
   email:
