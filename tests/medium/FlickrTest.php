@@ -4,21 +4,21 @@ class FlickrTest extends PHPUnit_Framework_Testcase {
     
     public function testConstruct_NoArguments_ThrowsException()
     {
-        $this->setExpectedException('Exception');
+        $this->setExpectedException('PHPUnit_Framework_Error_Warning');
         
         $flickr = new \Byron\Client\Flickr();
     }
 
     public function testConstruct_NoApiKey_ThrowsException()
     {
-        $this->setExpectedException('Exception');
+        $this->setExpectedException('InvalidArgumentException');
 
         $flickr = new \Byron\Client\Flickr(array());
     }
 
     public function testConstruct_ApiKeyIsNull_ThrowsException()
     {
-        $this->setExpectedException('Exception');
+        $this->setExpectedException('InvalidArgumentException');
 
         $flickr = new \Byron\Client\Flickr(array(
             "api_key" => null,
@@ -29,7 +29,7 @@ class FlickrTest extends PHPUnit_Framework_Testcase {
 
     public function testConstruct_ApiSecretIsNull_ThrowsException()
     {
-        $this->setExpectedException('Exception');
+        $this->setExpectedException('InvalidArgumentException');
 
         $flickr = new \Byron\Client\Flickr(array(
             "api_key" => null,
