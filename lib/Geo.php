@@ -24,7 +24,7 @@ class Geo {
      * @return array latitude scale and longitude scale
      */
     
-    public function scales($lat) {
+    public static function scales($lat) {
         
         // Simplified: assumes WGS84 ellipsoid, and input and
         // output in degrees.
@@ -67,7 +67,7 @@ class Geo {
      * @return array ($n, $s, $e, $w) or, equivalently ($lat0, $lat1, $lon0, $lon1)
      */
     
-    function boundingbox($lat, $lon, $meters) {
+    public static function boundingbox($lat, $lon, $meters) {
 
         list($latscale, $lonscale) = Geo::scales($lat);
         $latscale = 1 / $latscale; // number of degrees in a meter
