@@ -25,6 +25,8 @@ namespace Byron;
  * Then, the broker could call a "getService()" method on the newly-instantiated object,
  * returning the return value of "getService()" to the caller.  This is the mechanism
  * implemented by this class.
+ *
+ * See http://martinfowler.com/articles/injection.html#UsingAServiceLocator
  */
 
 class Broker {
@@ -49,6 +51,12 @@ class Broker {
     /**
      * Discouraged; code should be accessing the broker via a local
      * variable.
+     *
+     * Note that you must create a Broker object (with new Broker(...))
+     * before calling getInstance() for the first time!  If you don't,
+     * getInstance() will return null.
+     *
+     * @return \Byron\Broker
      */
 
     public static function getInstance() {
