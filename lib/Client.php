@@ -115,9 +115,9 @@ class Client extends \Zend_Http_Client {
      * @throws Service_Exception
      */
 
-    public function request() {
+    public function request($method = null) {
 
-        $response = parent::request();
+        $response = parent::request($method);
 
         if ($this->returnResponseObject) {
             return $response;
