@@ -10,7 +10,7 @@
 
 /**
  * Class autoloader for all classes in the \Byron namespace.  If attempting to load such 
- * a class, but no such class is found, and exception is thrown.
+ * a class, but no such class is found, an exception is thrown.
  */
 
 spl_autoload_register(function ($klass) {
