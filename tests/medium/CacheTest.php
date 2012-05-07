@@ -4,7 +4,9 @@ abstract class CacheTest extends PHPUnit_Framework_Testcase
 {
     public function tearDown()
     {
-        $this->cache->flush();
+        if (!is_null($this->cache)) {
+            $this->cache->flush();
+        }
     }
     
     public function testGet_NonexistantKey_ReturnsFalse()
@@ -32,14 +34,14 @@ abstract class CacheTest extends PHPUnit_Framework_Testcase
         $this->cache->set("foo", $v);
     }
     
-    public function testSetAndGetSerialised()
+    public function testSetAndGet_Json_ReturnsJson()
     {
         $v = array("foo" => str_repeat("x", 40), "bar" => array("quux" => 1));
         $this->cache->set("foo", json_encode($v));
         $this->assertEquals($v, json_decode($this->cache->get("foo"), true));
     }
     
-    public function testAdd()
+    public function testAdd_String_ReturnsString()
     {
         $k = "foo";
         $v1 = "qqqqqq";

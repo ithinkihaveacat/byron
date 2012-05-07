@@ -13,6 +13,11 @@ class CacheRedisTest extends CacheTest
             "port" => "6379",
             "database" => "0"
         ));
+        try { 
+            $redis->ping();
+        } catch (\Predis\Network\ConnectionException $e) {
+            $this->markTestSkipped("Skipping test, can't connect to redis");
+        }
         $this->cache = new \Byron\Cache\Redis($redis);
     }
     
