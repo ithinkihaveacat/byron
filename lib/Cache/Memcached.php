@@ -19,7 +19,7 @@ class Memcached implements \Byron\Cache {
     public function add($key, $value, $expires = null)
     {
         if (!is_scalar($value)) {
-            throw new \Exception("Cannot add() non-scalar values");
+            throw new \InvalidArgumentException("Cannot add() non-scalar values");
         }
         
         if (is_null($expires)) {
@@ -38,7 +38,7 @@ class Memcached implements \Byron\Cache {
     public function set($key, $value, $expires = null)
     {
         if (!is_scalar($value)) {
-            throw new \Exception("Cannot set() non scalar values");
+            throw new \InvalidArgumentException("Cannot set() non scalar values");
         }
 
         if (is_null($expires)) {

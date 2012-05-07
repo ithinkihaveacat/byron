@@ -1,7 +1,7 @@
 <?php
 
 require_once("CacheTest.php");
-require_once(__DIR__ . "/../ext/Predis.php");
+require_once(__DIR__ . "/../../ext/predis_0.7.2.phar");
 
 class CacheRedisTest extends CacheTest
 {

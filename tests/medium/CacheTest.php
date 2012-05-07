@@ -7,27 +7,27 @@ abstract class CacheTest extends PHPUnit_Framework_Testcase
         $this->cache->flush();
     }
     
-    public function testGetNonexistantKey()
+    public function testGet_NonexistantKey_ReturnsFalse()
     {
         $this->assertFalse(!!$this->cache->get("foo"));
     }
 
-    public function testSetAndGetString()
+    public function testSetAndGet_String_ReturnsString()
     {
         $this->cache->set("foo", "qqqqqq");
         $this->assertEquals("qqqqqq", $this->cache->get("foo"));
     }
 
-    public function testSetAndGetArray()
+    public function testSetAndGet_Array_ThrowsException()
     {
-        $this->setExpectedException("Exception");
+        $this->setExpectedException("InvalidArgumentException");
         $v = array("foo" => 1, "bar" => 2, "baz" => str_repeat("x", 40));
         $this->cache->set("foo", $v);
     }
 
-    public function testSetAndGetArrayOfArrays()
+    public function testSetAndGet_ArrayOfArrays_ThrowsException()
     {
-        $this->setExpectedException("Exception");
+        $this->setExpectedException("InvalidArgumentException");
         $v = array("foo" => str_repeat("x", 40), "bar" => array("quux" => 1));
         $this->cache->set("foo", $v);
     }
