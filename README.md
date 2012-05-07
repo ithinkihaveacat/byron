@@ -12,6 +12,9 @@ Hahahahahaha.
 
 # Requirements
 
+The library uses a few PHP modules.  Either install these from packages, or
+build PHP with something like:
+
     $ ./configure --enable-mbstring --with-openssl --with-xsl && make && make install
 
 # Build Status
