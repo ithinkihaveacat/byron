@@ -4,6 +4,11 @@ php:
   - 5.3
   - 5.4
 
+branches:
+  only:
+    - master
+    - composer
+
 before_script: 
   - git clone --depth 1 git://github.com/ithinkihaveacat/zend-framework-1.11.9.git zend-framework
 
