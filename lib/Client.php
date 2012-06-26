@@ -12,7 +12,8 @@ namespace Byron;
  * the real status in the body of the response.)
  */
 
-class Client extends \Zend_Http_Client {
+class Client extends \Zend_Http_Client
+{
 
     /**
      *
@@ -39,11 +40,13 @@ class Client extends \Zend_Http_Client {
         $this->setKey($key);
     }
 
-    public function setKey($key) {
+    public function setKey($key)
+    {
         return $this->key = $key;
     }
     
-    public function getKey() {
+    public function getKey()
+    {
         return $this->key;
     }
     
@@ -64,7 +67,8 @@ class Client extends \Zend_Http_Client {
      * @return string
      */
 
-    public function GET($url, $args = array()) {
+    public function GET($url, $args = array())
+    {
         
         $frag = parse_url($url);
         
@@ -94,7 +98,8 @@ class Client extends \Zend_Http_Client {
      * @return string
      */
     
-    public function POST($url, $args = array()) {
+    public function POST($url, $args = array())
+    {
         
         $this->resetParameters();
         $this->setUri($url);
@@ -115,7 +120,8 @@ class Client extends \Zend_Http_Client {
      * @throws Service_Exception
      */
 
-    public function request($method = null) {
+    public function request($method = null)
+    {
 
         $response = parent::request($method);
 
