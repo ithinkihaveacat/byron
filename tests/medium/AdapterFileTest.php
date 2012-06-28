@@ -18,6 +18,13 @@ class AdapterFileTest extends PHPUnit_Framework_TestCase
         $this->assertEquals("text/plain", $res->getHeader("content-type"));
         $this->assertEquals("Hello, World!", trim($res->getBody()));
 
+        $client->setUri("http://another.com/");
+        $res = $client->request();
+
+        $this->assertTrue($res->isSuccessful());
+        $this->assertEquals(200, $res->getStatus());
+        $this->assertEquals("text/plain", $res->getHeader("content-type"));
+        $this->assertEquals("Hello, World!", trim($res->getBody()));
     }
 
     public function test500File()
@@ -34,7 +41,6 @@ class AdapterFileTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(500, $res->getStatus());
         $this->assertEquals("application/json", $res->getHeader("content-type"));
         $this->assertEquals(array("message" => "Internal Server Error"), json_decode($res->getBody(), true));
-
     }
 
 }
