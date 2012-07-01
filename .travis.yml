@@ -15,6 +15,7 @@ before_script:
 script: 
   - phpunit -c tests/phpunit.xml.dist tests/small
   - phpunit -c tests/phpunit.xml.dist tests/medium
+  - phpunit -c tests/phpunit.xml.dist tests/large
 
 notifications:
   email:
