@@ -6,7 +6,13 @@
 
 require_once('PHPUnit/Autoload.php');
 require_once(__DIR__ . '/../byron.php');
-require_once(__DIR__ . '/../vendor/autoload.php');
+
+// Autoloader for ZF created by http://getcomposer.org/; conditional include 
+// because ZF not needed for "small" tests.  (include() issues a warning if
+// the file doesn't exist...)
+if (file_exists(__DIR__ . '/../vendor/autoload.php')) {
+    require_once(__DIR__ . '/../vendor/autoload.php'); 
+}
 
 // Arrange for Zend_* to be found.  Assumed to be installed at the
 // same level as "byron" itself, in a directory called "zend-framework".
