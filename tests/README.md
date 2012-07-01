@@ -1,9 +1,8 @@
 ## Overview
 
 The tests are divided into "small" (no external dependencies or libraries
-required) and "medium" (external dependencies, such as Zend Framework, redis or
-memcached).  (If there were any end-to-end or server-to-server tests these would
-be in the "large" directory.)
+required) and "medium" (external PHP dependencies, such as Zend Framework) and
+"large" (external dependencides, such as redis and memcached).
 
 This more or less follows Google's nomenclature, as described here:
 
