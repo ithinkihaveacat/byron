@@ -1,10 +1,9 @@
 # Overview
 
-A little library for doing a few things with PHP, the most interesting
-being config management/service discovery and DOM manipulation.  (See
-the `tests` directory.)  The services have a dependency on Zend
-Framework's HTTP client; there might be some other ZF dependencies as
-well.
+A little library for doing a few things with PHP, the most interesting being
+config management/service discovery and DOM manipulation.  (See the `tests`
+directory.)  The services have a dependency on Zend Framework's HTTP client;
+there might be some other ZF dependencies as well.
 
 # Is the API stable?
 
@@ -15,7 +14,15 @@ Hahahahahaha.
 The library uses a few PHP modules.  Either install these from packages, or
 build PHP with something like:
 
-    $ ./configure --enable-mbstring --with-openssl --with-xsl && make && make install
+    $ ./configure --enable-mbstring --with-openssl --enable-intl --with-xsl && make && make install
+
+# Running Tests
+
+    $ phpunit -c tests/phpunit.xml.dist tests/small
+    
+Or, if you have Xdebug:
+
+    $ phpunit -c tests/phpunit.xml.dist --coverage-html ./coverage tests/small
 
 # Installation
 
