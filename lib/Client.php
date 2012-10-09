@@ -3,13 +3,14 @@
 namespace Byron;
 
 /**
- * \Byron\Client extends \Zend_Http_Client, and behaves like it in most respects.
- * However, there are two crucial differences: (1) the constructor takes a "key", which
- * will generally be an API key, or a datastructure representing an API key; and (2)
- * the return value of an actual request can be configured to be just the body of the 
- * response, and not the response object itself.  (This is useful if the service
- * you're talking to isn't very RESTful, and pretty much always returns a 200, embedding
- * the real status in the body of the response.)
+ * \Byron\Client extends \Zend_Http_Client, and behaves like it in most
+ * respects. However, there are two crucial differences: (1) the constructor
+ * takes a "key", which will generally be an API key, or a datastructure
+ * representing an API key; and (2) the return value of an actual request can be
+ * configured to be just the body of the response, and not the response object
+ * itself.  (This is useful if the service you're talking to isn't very RESTful,
+ * and pretty much always returns a 200, embedding the real status in the body
+ * of the response.)
  */
 
 class Client extends \Zend_Http_Client
@@ -23,12 +24,13 @@ class Client extends \Zend_Http_Client
     protected $key = null;
 
     /**
-     * Whether to return a response object, or the raw response body.  The value you
-     * want more or less depends on how RESTful the service you're talking to is.  If
-     * it's very RESTful (e.g. 404 indicates something is missing, rather than an
-     * error), then you probably want the response object.  On the other hand, if the
-     * server pretty much always returns a 200 response, and embeds error messages
-     * in the content itself, then you probably want the raw response body.
+     * Whether to return a response object, or the raw response body.  The value
+     * you want more or less depends on how RESTful the service you're talking
+     * to is.  If it's very RESTful (e.g. 404 indicates something is missing,
+     * rather than an error), then you probably want the response object.  On
+     * the other hand, if the server pretty much always returns a 200 response,
+     * and embeds error messages in the content itself, then you probably want
+     * the raw response body.
      *
      * @var boolean
      */
@@ -111,10 +113,11 @@ class Client extends \Zend_Http_Client
     }
 
     /**
-     * Perform the actual request using the client instance.  If the instance variable
-     * $returnResponseObject is true a Zend_Http_Response is returned, otherwise the
-     * response body only is returned.  (In this case some basic error checking
-     * is performed--an exception is thrown if the server returned a 404, for example.)
+     * Perform the actual request using the client instance.  If the instance
+     * variable $returnResponseObject is true a Zend_Http_Response is returned,
+     * otherwise the response body only is returned.  (In this case some basic
+     * error checking is performed--an exception is thrown if the server
+     * returned a 404, for example.)
      *
      * @return Zend_Http_Response|string
      * @throws Service_Exception

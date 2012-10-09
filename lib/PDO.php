@@ -7,29 +7,27 @@
  *    so that database connections are re-used.
  *  * A few convenience SQL-generation methods are added.
  * 
- * The general philosphy with this is: don't worry about writing some
- * code to generate the SQL for you: bust out raw SQL early and
- * often.
+ * The general philosphy with this is: don't worry about writing some code to
+ * generate the SQL for you: bust out raw SQL early and often.
  * 
- * (Because: raw SQL is comprehensible (non-magic); it's easily
- * debugged (since it can be cut-and-pasted to and from a query
- * browser); it avoids having to learn another language (the
- * language that maps from language-specific constructs to SQL); and
- * at some point you'll have to write raw SQL anyway (since, unless
- * you do a LOT of work, you aren't going to be able to reproduce
+ * (Because: raw SQL is comprehensible (non-magic); it's easily debugged (since
+ * it can be cut-and-pasted to and from a query browser); it avoids having to
+ * learn another language (the language that maps from language-specific
+ * constructs to SQL); and at some point you'll have to write raw SQL anyway
+ * (since, unless you do a LOT of work, you aren't going to be able to reproduce
  * some fancy SQL with your query language).
  * 
- * Note that there's very little difference between caching the PDO
- * connection yourself, and getting PDO to do it (for SQLite at
- * least)--see
+ * Note that there's very little difference between caching the PDO connection
+ * yourself, and getting PDO to do it (for SQLite at least)--see
  * 
  * http://netevil.org/blog/2005/sep/benchmarking-in-general
  * 
- * TODO write execute() method, and get it to handle SQLITE_BUSY
- * errors better.  See
+ * TODO write execute() method, and get it to handle SQLITE_BUSY errors better.
+ *
+ * See:
  * 
- * http://www.sqlite.org/c3ref/busy_handler.html
- * http://www.sqlite.org/c3ref/c_abort.html
+ *   * http://www.sqlite.org/c3ref/busy_handler.html
+ *   * http://www.sqlite.org/c3ref/c_abort.html
  * 
  * $error = $sth->errorInfo();
  * $error[1] == 5

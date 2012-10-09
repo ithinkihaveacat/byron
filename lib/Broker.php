@@ -3,14 +3,16 @@
 namespace Byron;
 
 /**
- * The Broker system is merely a more structured way of creating a no-argument function
- * for each service that returns an object appropriately configured (with correct hostnames,
- * usernames, passwords, etc.) for interacting with that service.
+ * The Broker system is merely a more structured way of creating a no-argument
+ * function for each service that returns an object appropriately configured
+ * (with correct hostnames, usernames, passwords, etc.) for interacting with
+ * that service.
  *
- * That is, the constructor for a low-level library function will probably have arguments
- * like hostname, username, password, etc.  It's incovenient and annoying to have to
- * figure out how and where these details should come from every time you want to use
- * the service.  You could create a big PHP file with a function for each service:
+ * That is, the constructor for a low-level library function will probably have
+ * arguments like hostname, username, password, etc.  It's incovenient and
+ * annoying to have to figure out how and where these details should come from
+ * every time you want to use the service.  You could create a big PHP file with
+ * a function for each service:
  *
  *     function getMySQLService() {
  *         // extract connection details from a (global?) variable
@@ -19,12 +21,12 @@ namespace Byron;
  *     }
  *
  * But this is a bit messy and unclean.  The alternative is to create a "Broker"
- * object, giving it a mechanism to create an appropriate class names for a service,
- * when that service is requested.  Then the broker can instantiate that class, passing
- * it any information it might need, like an object storing configuration details.
- * Then, the broker could call a "getService()" method on the newly-instantiated object,
- * returning the return value of "getService()" to the caller.  This is the mechanism
- * implemented by this class.
+ * object, giving it a mechanism to create an appropriate class names for a
+ * service, when that service is requested.  Then the broker can instantiate
+ * that class, passing it any information it might need, like an object storing
+ * configuration details. Then, the broker could call a "getService()" method on
+ * the newly-instantiated object, returning the return value of "getService()"
+ * to the caller.  This is the mechanism implemented by this class.
  *
  * See http://martinfowler.com/articles/injection.html#UsingAServiceLocator
  */
@@ -104,4 +106,3 @@ class Broker {
     }
 
 }
-

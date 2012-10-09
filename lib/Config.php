@@ -1,13 +1,12 @@
 <?php
 
 /**
- * Simple routines for restoring and retrieving configuration 
- * information based around the PHP function parse_ini_file().
+ * Simple routines for restoring and retrieving configuration information based
+ * around the PHP function parse_ini_file().
  *
- * getMandatory() and getOptional() are used in preference
- * to get() with some arguments because I kept forgetting
- * what the arguments meant, and their order.  It's better
- * this way, trust me!
+ * getMandatory() and getOptional() are used in preference to get() with some
+ * arguments because I kept forgetting what the arguments meant, and their
+ * order.  It's better this way, trust me!
  * 
  * @license MIT
  * @author Michael Stillwell <mjs@beebo.org>
@@ -43,12 +42,12 @@ class Config
     }
     
     /**
-     * Loads the configuration information given in file $filename into
-     * the configuration object.  This uses the function parse_ini_file()
+     * Loads the configuration information given in file $filename into the
+     * configuration object.  This uses the function parse_ini_file()
      * internally, so the passed file should be compatible with it.
      *
-     * If load is called multiple times, the configuration settings are 
-     * merged; in the case of a conflict, last file wins.
+     * If load is called multiple times, the configuration settings are merged;
+     * in the case of a conflict, last file wins.
      *
      * @param string $filename
      */
@@ -87,8 +86,8 @@ class Config
     }
     
     /**
-     * Returns the configuration value associated with key $k, dying if
-     * it does not exist.
+     * Returns the configuration value associated with key $k, dying if it does
+     * not exist.
      *
      * @param string $k
      * @return mixed

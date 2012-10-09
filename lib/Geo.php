@@ -11,10 +11,10 @@ namespace Byron;
 class Geo {
     
     /**
-     * Returns a list consisting of the number of meters per angle of 
-     * latitude and longitude (measured in degrees) at the specified latitude. 
-     * These values may be used for fast approximations of distance
-     * calculations in the vicinity of some location.
+     * Returns a list consisting of the number of meters per angle of latitude
+     * and longitude (measured in degrees) at the specified latitude. These
+     * values may be used for fast approximations of distance calculations in
+     * the vicinity of some location.
      *
      *   list( $lat_scale, $lon_scale ) = $geo->scales($lat0);
      *   $x = $lon_scale * ($lon - $lon0); 
@@ -58,8 +58,8 @@ class Geo {
     }
     
     /**
-     * Returns a bounding box centered on a point given by ($lat, $lon), with a boundary of
-     * $meters to the north, south, east and west.
+     * Returns a bounding box centered on a point given by ($lat, $lon), with a
+     * boundary of $meters to the north, south, east and west.
      *
      * @param float $lat the latitude around which the bounding box will be centered
      * @param float $lon the longitude around which the bounding box will be centered

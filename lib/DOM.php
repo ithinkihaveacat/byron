@@ -5,8 +5,9 @@ namespace Byron;
 class DOM {
     
     /**
-     * Takes the filename of a HTML file, returns a proxied DOMDocument object that
-     * does everything a DOMDocument does, but with some extra convenience functions.
+     * Takes the filename of a HTML file, returns a proxied DOMDocument object
+     * that does everything a DOMDocument does, but with some extra convenience
+     * functions.
      *
      * @param string $filename
      * @return \Byron\DOM\DOMDocument Does everything a DOMDocument does, but has additional helper functions
@@ -19,8 +20,8 @@ class DOM {
     }
 
     /**
-     * Takes an HTML string, returns a proxied DOMDocument object that
-     * does everything a DOMDocument does, but with some extra convenience functions.
+     * Takes an HTML string, returns a proxied DOMDocument object that does
+     * everything a DOMDocument does, but with some extra convenience functions.
      *
      * @param string $s XML string
      * @return \Byron\DOM\DOMDocument Does everything a DOMDocument does, but has additional helper functions
@@ -33,11 +34,12 @@ class DOM {
     }
 
     /**
-     * Takes the filename of an XML file, returns a proxied DOMDocument object that
-     * does everything a DOMDocument does, but with some extra convenience functions.
+     * Takes the filename of an XML file, returns a proxied DOMDocument object
+     * that does everything a DOMDocument does, but with some extra convenience
+     * functions.
      *
-     * (This is equivalent to load() in the DOMDocument API, but is renamed here for
-     * consistency.)
+     * (This is equivalent to load() in the DOMDocument API, but is renamed here
+     * for consistency.)
      *
      * @param string $filename
      * @return \Byron\DOM\DOMDocument Does everything a DOMDocument does, but has additional helper functions
@@ -63,8 +65,8 @@ class DOM {
     }
 
     /**
-     * Takes an XML string, returns a proxied DOMDocument object that
-     * does everything a DOMDocument does, but with some extra convenience functions.
+     * Takes an XML string, returns a proxied DOMDocument object that does
+     * everything a DOMDocument does, but with some extra convenience functions.
      *
      * @param string $s XML string
      * @return \Byron\DOM\DOMDocument Does everything a DOMDocument does, but has additional helper functions

@@ -6,9 +6,9 @@ interface Cache {
     
     /**
      * Retrieves value associated with $key from the cache backend.  Because
-     * backends indicate "not found" in different ways, consumers must
-     * assume that any return value that satisfies empty() is a cache miss,
-     * and act accordingly.
+     * backends indicate "not found" in different ways, consumers must assume
+     * that any return value that satisfies empty() is a cache miss, and act
+     * accordingly.
      * 
      * @param $key
      * @return mixed
@@ -29,8 +29,8 @@ interface Cache {
     
     /**
      * Saves the $key/$value pair to the cache backend.  Saving anything for
-     * that is empty() is not supported--even if this value makes it through
-     * to the backend, other clients will assume any such value returned is
+     * that is empty() is not supported--even if this value makes it through to
+     * the backend, other clients will assume any such value returned is
      * equivalent to a cache miss.  (Classes extending this class should check
      * to see if empty($value) is true, and throw an error if so.)
      * 
