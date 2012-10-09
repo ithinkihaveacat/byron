@@ -10,6 +10,9 @@ class StringTest extends PHPUnit_Framework_Testcase
         $this->assertEquals("Hello, World!", $s->toHtmlEntities());
         $this->assertEquals("Hello, World!", $s->toNamedEntities());
         $this->assertEquals("Hello, World!", $s->toNumericEntities());
+        if (PHP_MINOR_VERSION > 3):
+            $this->assertEquals("Hello, World!", $s->toNumericEntities());
+        endif;
     }
     
     public function testGreaterAndLessThan()
@@ -19,7 +22,9 @@ class StringTest extends PHPUnit_Framework_Testcase
         $this->assertEquals("Hello, &#60;World&#62;!", $s->toNumericEntities());
         $this->assertEquals("Hello, &lt;World&gt;!", $s->toHtmlEntities());
         $this->assertEquals("Hello, &lt;World&gt;!", $s->toNamedEntities());
-        $this->assertEquals("Hello, &lt;World&gt;!", $s->toXmlEntities());
+        if (PHP_MINOR_VERSION > 3):
+           $this->assertEquals("Hello, &lt;World&gt;!", $s->toXmlEntities());
+        endif;
     }
 
     public function testSpecialCharacters()
@@ -29,7 +34,9 @@ class StringTest extends PHPUnit_Framework_Testcase
         $this->assertEquals("Some of my favourite characters as &#38;, &#60;, &#62;, &#163;, &#182;, # and '", $s->toNumericEntities());
         $this->assertEquals("Some of my favourite characters as &amp;, &lt;, &gt;, &pound;, &para;, # and '", $s->toHtmlEntities());
         $this->assertEquals("Some of my favourite characters as &amp;, &lt;, &gt;, &pound;, &para;, # and '", $s->toNamedEntities());
-        $this->assertEquals("Some of my favourite characters as &amp;, &lt;, &gt;, £, ¶, # and '", $s->toXmlEntities());
+        if (PHP_MINOR_VERSION > 3):
+            $this->assertEquals("Some of my favourite characters as &amp;, &lt;, &gt;, £, ¶, # and '", $s->toXmlEntities());
+        endif;
     }
 
     public function testToUri()
